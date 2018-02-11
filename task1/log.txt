@@ -1,0 +1,11 @@
+commit 0743b46fe7cae0ce182ae689197a24ef19a2b7c3
+Author: Maxim Bykov <maxim12098@gmail.com>
+Date:   Sun Feb 11 23:01:55 2018 +0300
+
+    task1/status.txt
+
+commit f6af492dc01ee387f8633cedc3f9d31679312f28
+Author: Maxim Bykov <maxim12098@gmail.com>
+Date:   Sun Feb 11 22:45:29 2018 +0300
+
+    add .gitignore

@@ -58,7 +58,7 @@
                 <div class="col-2">
                     <input type="text" class="form-control" placeholder="To: 26.02.2018">
                 </div>
-                <div class="col-3">
+                <div class="col-3 sticky-position">
                     <input type="text" name="users" class="form-control" placeholder="Names: Lukos " list="users">
                     <datalist class="sticky-position" id="users">
                         <option value="Lukos">
@@ -79,7 +79,7 @@
 
     <ul class="posts" id="posts">
 
-        <template id="post-template1">
+        <template id="post-template">
             <li class="content" id="" data-target="id">
                 <div class="content-header">
                     <div class="content-header-username"><span class="span-options" data-target="author">Nickname</span>
@@ -92,7 +92,7 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons more">more_vert</i>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" >
                                 <a class="dropdown-item" href="#">Edit</a>
                                 <a class="dropdown-item" href="#">Delete</a>
                                 <a class="dropdown-item" href="#">Info</a>

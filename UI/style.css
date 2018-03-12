@@ -153,7 +153,7 @@ main::-webkit-scrollbar {
     list-style-type: none;
 }
 .sticky-position{
-    position: fixed;
+    position: sticky;
 }
 
 .content {

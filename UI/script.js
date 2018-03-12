@@ -1,3 +1,4 @@
+var username = 'Lukos';
 let a = function () {
 
     let photoPosts = [
@@ -7,9 +8,9 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Максим',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'gory_nebo_otrazhenie_trava_84468_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold', 'hi', 'testTag'],
-            likes: ['sam smith', 'maxim bykov'],
+            likes: ['sam smith', 'maxim bykov', 'someone famous'],
 
         }, {
             id: '2',
@@ -18,14 +19,14 @@ let a = function () {
             author: 'Иванов Максим',
             photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
-            likes: ['sam smith', 'maxim bykov'],
+            likes: ['sam smith', 'maxim bykov', 'someone famous'],
 
         }, {
             id: '3',
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Олег',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'kosmos_nebo_spiral_galaktika_99967_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -43,7 +44,7 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Иван',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'park-priroda-osen-4.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -52,7 +53,7 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Иван',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'park-priroda-osen-4.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -61,7 +62,7 @@ let a = function () {
             description: 'TUT.BY для бизнеса - это площадки и современные сервисы для привлечения покупателей. ',
             createdAt: new Date(98),
             author: 'Иванов Иван',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'gory_nebo_otrazhenie_trava_84468_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -70,7 +71,7 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Иван',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'rumyniya_kympulung_derevo_trava_nebo_svet_107135_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -88,7 +89,7 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:10:00'),
             author: 'Иванов Иван',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'les-derevia-doroga-3.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -107,7 +108,7 @@ let a = function () {
             description: 'Можно долго спорить, чем была БНР\n',
             createdAt: new Date('2003-02-23T23:00:00'),
             author: 'Иванов Максим',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'rumyniya_kympulung_derevo_trava_nebo_svet_107135_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold', 'testTag'],
             likes: ['sam smith', 'maxim bykov'],
         }, {
@@ -124,7 +125,7 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов кирилл',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'mokh_derevya_les_113541_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
@@ -151,14 +152,13 @@ let a = function () {
             description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Иван',
-            photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
+            photoLink: 'mokh_derevya_les_113541_1920x1080.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov'],
 
         }, {
             id: '18',
-            description: 'На другой стороне, в оппозиции, происходят не менее интересные процессы. Не соглашусь с уважаемы\n' +
-            'Читать полностью:  https://news.tut.by/economics/583705.html\n',
+            description: 'На другой стороне, в оппозиции, происходят не менее интересные процессы. Не соглашусь с уважаемы\n',
             createdAt: new Date('2017-02-23T23:00:00'),
             author: 'Петров',
             photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
@@ -227,7 +227,63 @@ let a = function () {
         }
         console.log("объект валиден");
         return true;
+
+// Object.keys(photoPost).every(function (item) {
+//     return objectValidator[item](item)
+// });
+//         for (let key in photoPost) {
+//             console.log(key);
+//             if (objectValidator[key](photoPost[key])) {
+//                 return false;
+//             }
+//         }
+//         return true;
+
+
     }
+
+    // let objectValidator = {
+    //     id: function (id) {
+    //         return typeof (id) !== "string" || !id
+    //     },
+    //     description: function (description) {
+    //         return typeof (description) !== "string" || !description
+    //     },
+    //     createdAt: function (createdAt) {
+    //         return typeof (createdAt) !== "object" && createdAt instanceof Date
+    //     },
+    //     author: function (author) {
+    //         return typeof (author) !== "string" || !author
+    //     },
+    //     photoLink: function (photoLink) {
+    //         return typeof (photoLink) !== "string" || !photoLink
+    //     },
+    //     hashTags: function (hashTags) {
+    //         if (typeof (hashTags) !== "object") {
+    //             return true;
+    //         }
+    //         else {
+    //             if (!isArrayValid(hashTags)) {
+    //                 console.log("объект невалиден");
+    //                 return true;
+    //             }
+    //             return false;
+    //         }
+    //
+    //     },
+    //     likes: function (likes) {
+    //         if (typeof (likes) !== "object") {
+    //             return true;
+    //         } else {
+    //             if (!isArrayValid(likes)) {
+    //                 console.log("объект невалиден");
+    //                 return true;
+    //             }
+    //             return false;
+    //         }
+    //     },
+    // };
+
 
     function isArrayValid(array) {
         return array.every(function (item) {
@@ -259,29 +315,29 @@ let a = function () {
         const tmpDate = currentPhotoPost.createdAt;
         const tmpAuthor = currentPhotoPost.author;
         const tmpLikes = currentPhotoPost.likes;
-        if (validatePhotoPost(currentPhotoPost)) {
 
-            let tmpObj =  Object.create(currentPhotoPost);
-            Object.assign(tmpObj, photoPost);
-            tmpObj.id = tmpId;
-            tmpObj.createdAt = tmpDate;
-            tmpObj.author = tmpAuthor;
-            tmpObj.likes = tmpLikes;
-            if (validatePhotoPost(tmpObj)) {
-                Object.assign(currentPhotoPost, tmpObj);
-                console.log("successfully edited");
-                return true;
-            }
+        let tmpObj = Object.create(currentPhotoPost);
+        Object.assign(tmpObj, photoPost);
+        tmpObj.id = tmpId;
+        tmpObj.createdAt = tmpDate;
+        tmpObj.author = tmpAuthor;
+        tmpObj.likes = tmpLikes;
+        if (validatePhotoPost(tmpObj)) {
+            Object.assign(currentPhotoPost, tmpObj);
+            console.log("successfully edited");
+            return true;
         }
+
         console.log("something went wrong. Can't edit photoPost");
 
         return false;
     }
 
     function removePhotoPost(id) {
-        if (typeof id !== "string"){
+        if (typeof id !== "string") {
             console.log("illegal arguments");
-            return false;}
+            return false;
+        }
         const index = photoPosts.findIndex(function (item) {
             return item.id === id;
         });
@@ -353,3 +409,123 @@ let a = function () {
         photoPosts
     }
 }();
+
+
+(function (publicScope) {
+    'use strict';
+
+    const template = document.getElementById('post-template1');
+    const container = document.getElementById('posts');
+
+    function formatDate(date) {
+
+        let dd = date.getDate();
+        if (dd < 10) dd = '0' + dd;
+
+        let mm = date.getMonth() + 1;
+        if (mm < 10) mm = '0' + mm;
+
+        return dd + '.' + mm + '.' + date.getFullYear();
+    }
+
+
+    function addItem(data) {
+
+        let newNote = document.importNode(template.content, true);
+
+        let placeholders = newNote.querySelectorAll('[data-target]');
+        [].forEach.call(placeholders, (phElement) => {
+            let key = phElement.getAttribute('data-target');
+            switch (key) {
+                case "createdAt":
+                    phElement.textContent = formatDate(data[key]);
+                    break;
+                case "photoLink":
+                    phElement.setAttribute("src", data[key]);
+                    break;
+                case"id":
+                    phElement.setAttribute("id", data[key]);
+                    break;
+                case"likes":
+                    phElement.textContent = data[key].length + " persons likes this";
+                    break;
+                case"hashTags":
+                    data[key].forEach((item) => {
+                        let li = document.createElement('li');
+                        li.textContent = "#" + item;
+                        li.setAttribute("class", "dropdown-item");
+                        phElement.appendChild(li);
+
+                    });
+                    break;
+                default:
+                    phElement.textContent = String(data[key]);
+                    break;
+            }
+
+        });
+        container.appendChild(newNote);
+    }
+
+
+    publicScope.onAddItem = (data) => {
+        data.forEach((item) => addItem(item));
+    };
+
+    onAddItem(a.getPhotoPosts(0, 10));
+})(window);
+
+
+function removePhotoPost(id) {
+    const node = document.getElementById(id);
+    if (node.parentNode) {
+        node.parentNode.removeChild(node);
+    }
+    a.removePhotoPost(id);
+}
+
+function editPhotoPost(id, data) {
+    let node = document.getElementById(id);
+    let placeholders = node.querySelectorAll('[data-target]');
+    if (a.editPhotoPost(id, data)) {
+        [].forEach.call(placeholders, (node) => {
+            let key = node.getAttribute('data-target');
+            if (data[key] !== undefined)
+                switch (key) {
+                    case "photoLink":
+                        node.setAttribute("src", data[key]);
+                        break;
+                    case "description":
+                        node.textContent = String(data[key]);
+                        break;
+                }
+        })
+    }
+
+}
+
+function setUser() {
+    let node = document.getElementById("username");
+    node.textContent = username;
+}
+
+setUser();
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}

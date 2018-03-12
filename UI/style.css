@@ -49,7 +49,7 @@ footer > p {
 
 main::-webkit-scrollbar {
     /* This is the magic bit */
-    display: none;
+    /*display: none;*/
 }
 
 @media screen and (max-width: 700px) {
@@ -74,6 +74,40 @@ main::-webkit-scrollbar {
         font-size: 21px;
     }
 
+    .content-footer-description {
+        width: 100%;
+        height: 70%;
+        border-top: 1px solid gainsboro;
+        font-size: 11px;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+
+    .more {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        background-color: rgb(255, 253, 252);
+        border: none;
+        font-size: 36px;
+    }
+
+    .content-footer-description {
+        width: 100%;
+        height: 70%;
+        border-top: 1px solid gainsboro;
+    }
+}
+
+.username {
+    font-size: 9px;
+    color: rgb(255, 253, 252);
 }
 
 .headerText {
@@ -115,13 +149,20 @@ main::-webkit-scrollbar {
 
 }
 
+.posts {
+    list-style-type: none;
+}
+.sticky-position{
+    position: fixed;
+}
+
 .content {
     width: 600px;
     height: 500px;
 
     background-color: rgb(250, 250, 250);
     border: 1px solid darkgray;
-    margin: 20px;
+    margin: 30px;
 }
 
 .content-header {
@@ -189,12 +230,6 @@ main::-webkit-scrollbar {
     border-top: 1px solid gainsboro;
 }
 
-.content-footer-description {
-    width: 100%;
-    height: 70%;
-    border-top: 1px solid gainsboro;
-}
-
 .content-main-img {
     height: 100%;
     width: 100%;
@@ -232,20 +267,6 @@ main::-webkit-scrollbar {
     color: rgba(60, 63, 65, 0.51);
 
 }
-@media screen and (min-width: 700px) {
-
-.more {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    background-color: rgb(255, 253, 252);
-    border: none;
-    font-size: 36px;
-}}
 
 .hash-tags {
     width: 10%;
@@ -260,4 +281,55 @@ main::-webkit-scrollbar {
     flex-direction: row;
     margin: 20px;
 
+}
+
+.likes {
+    height: 100%;
+margin-left: 5px;
+    color: rgba(60, 63, 65,0.9);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+}
+
+/* The container <div> - needed to position the dropdown content */
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
 }

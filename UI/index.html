@@ -8,7 +8,6 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -29,20 +28,24 @@
 <header>
 
     <div class="dropdown">
+
         <button class="header-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
             <img src="ic_person_white_48px.svg">
+            <p class="username" id="username"></p>
 
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button class="dropdown-item" type="button">Log In/Log Out</button>
             <button class="dropdown-item" type="button">Add Photo</button>
         </div>
+
     </div>
 
     <div class=" headerText ">
         <span class="copseFont ">PHOTO<span class="permanentMarkerFont">HUB</span></span>
     </div>
+
 </header>
 
 <main>
@@ -52,11 +55,18 @@
                 <div class="col-2">
                     <input type="text" class="form-control" placeholder="From: 12.03.1998">
                 </div>
-                <div class="col">
+                <div class="col-2">
                     <input type="text" class="form-control" placeholder="To: 26.02.2018">
                 </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Names: Lukos ">
+                <div class="col-3">
+                    <input type="text" name="users" class="form-control" placeholder="Names: Lukos " list="users">
+                    <datalist class="sticky-position" id="users">
+                        <option value="Lukos">
+                        <option value="DezEnd">
+                        <option value="Иванов Иван">
+                        <option value="Иванов Максим">
+                        <option value="Быков Максим">
+                    </datalist>
                 </div>
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Tags: #nature">
@@ -67,514 +77,74 @@
 
     </div>
 
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
+    <ul class="posts" id="posts">
+
+        <template id="post-template1">
+            <li class="content" id="" data-target="id">
+                <div class="content-header">
+                    <div class="content-header-username"><span class="span-options" data-target="author">Nickname</span>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="gory_nebo_otrazhenie_trava_84468_1920x1080.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
+                    <div class="content-header-data-of-publication"><span class="span-options" data-target="createdAt">Date</span>
                     </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="kosmos_nebo_spiral_galaktika_99967_1920x1080.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="park-priroda-osen-4.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="rumyniya_kympulung_derevo_trava_nebo_svet_107135_1920x1080.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="les-derevia-doroga-3.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="mokh_derevya_les_113541_1920x1080.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="noch_zvezdnoe_nebo_blesk_voda_ostrov_skaly_galaktika_98590_1920x1080.jpg"
-                     class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
+                    <div class="content-header-menu">
+                        <div class="dropdown">
+                            <button class="more" type="button" id="dropdownMenuButton100"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons more">more_vert</i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="#">Delete</a>
+                                <a class="dropdown-item" href="#">Info</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
+                <div class="content-main">
+                    <div class="content-main-img-wrapper">
+                        <img src="gory_nebo_otrazhenie_trava_84468_1920x1080.jpg" class="content-main-img"
+                             data-target="photoLink" alt="Картинка не найдена">
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="kosmos_nebo_spiral_galaktika_99967_1920x1080.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
+                <div class="content-footer">
+                    <div class="content-footer-status">
+                        <div class="likes-block">
+                            <button class="more ">
+                                <i class="material-icons more">favorite_border</i>
+                            </button>
+                        </div>
+                        <div class="empty-block">
+                            <div class="likes" data-target="likes">0</div>
+                        </div>
+                        <div class="hash-tags-block">
+                            <!--<div class="dropdown dropright">-->
+                            <!--<button onclick="myFunction()" class="dropbtn more"><i-->
+                            <!--class="material-icons more">apps</i>-->
+                            <!--</button>-->
+                            <!--<div id="myDropdown" class="dropdown-content">-->
+                            <!--<a href="#">Link 1</a>-->
+                            <!--<a href="#">Link 2</a>-->
+                            <!--<a href="#">Link 3</a>-->
+                            <!--</div>-->
+                            <!--</div>-->
 
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
+                            <div class="dropright">
+                                <button type="button" class="more" data-toggle="dropdown">
+                                    <i class="material-icons more">apps</i></button>
+                                <ul class="dropdown-menu" data-target="hashTags">
+                                    <!--<li class="dropdown-item" href="#">#Nature</li>-->
+                                    <!--<li class="dropdown-item" href="#">#Water</li>-->
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
+                    <div class="content-footer-description"><p class="description" data-target="description">Some
+                        description will be here...</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="park-priroda-osen-4.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-header-username"><span class="span-options">Lukos</span></div>
-            <div class="content-header-data-of-publication"><span class="span-options">19.02.2018</span></div>
-            <div class="content-header-menu">
-                <div class="dropdown">
-                    <button class="more" type="button" id="dropdownMenuButton1"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons more">more_vert</i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Edit</a>
-                        <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-main">
-            <div class="content-main-img-wrapper">
-                <img src="rumyniya_kympulung_derevo_trava_nebo_svet_107135_1920x1080.jpg" class="content-main-img"
-                     alt="Картинка не найдена">
-            </div>
-        </div>
-        <div class="content-footer">
-            <div class="content-footer-status">
-                <div class="likes-block">
-                    <button class="more ">
-                        <i class="material-icons more">favorite_border</i>
-                    </button>
-                </div>
-                <div class="empty-block"></div>
-                <div class="hash-tags-block">
-
-
-                    <div class="btn-group dropright">
-                        <button type="button" class="more" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="material-icons more">apps</i></button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">#Nature</a>
-                            <a class="dropdown-item" href="#">#Water</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div class="content-footer-description"><p class="description">Some description will be here...</p></div>
-        </div>
-    </div>
-
+            </li>
+        </template>
+    </ul>
     <div>
         <button style="margin: 15px;">load more</button>
     </div>
@@ -586,6 +156,6 @@
         <p>2018</p>
     </footer>
 </main>
-
+<script src="script.js"></script>
 </body>
 </html>

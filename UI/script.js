@@ -16,7 +16,7 @@ let a = function () {
             id: '2',
             description: 'ыло сделать такой сценарий максимально привлекательным для самих участников по сравнению с ал\n',
             createdAt: new Date(),
-            author: 'Иванов Максим',
+            author: 'Lukos',
             photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
             hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
             likes: ['sam smith', 'maxim bykov', 'someone famous'],
@@ -198,92 +198,34 @@ let a = function () {
     }
 
     function validatePhotoPost(photoPost) {
-        if (typeof photoPost !== "object" ||
-            typeof (photoPost.id) !== "string" ||
-            typeof (photoPost.description) !== "string" ||
-            (typeof (photoPost.createdAt) !== "object" && photoPost.createdAt instanceof Date) ||
-            typeof (photoPost.author) !== "string" ||
-            typeof (photoPost.photoLink) !== "string") {
-            console.log("объект невалиден");
-            return false;
-        }
-        if (typeof (photoPost.hashTags) !== "object") {
-            console.log("объект невалиден");
-            return false;
-        }
-        else {
-            if (!isArrayValid(photoPost.hashTags)) {
-                console.log("объект невалиден");
-                return false;
-            }
-        }
-        if (typeof (photoPost.likes) !== "object") {
-            return false;
-        } else {
-            if (!isArrayValid(photoPost.likes)) {
-                console.log("объект невалиден");
-                return false;
-            }
-        }
-        console.log("объект валиден");
-        return true;
-
-// Object.keys(photoPost).every(function (item) {
-//     return objectValidator[item](item)
-// });
-//         for (let key in photoPost) {
-//             console.log(key);
-//             if (objectValidator[key](photoPost[key])) {
-//                 return false;
-//             }
-//         }
-//         return true;
-
-
+        return Object.keys(photoPost).every((item) => {
+            return objectValidator[item](photoPost[item])
+        });
     }
 
-    // let objectValidator = {
-    //     id: function (id) {
-    //         return typeof (id) !== "string" || !id
-    //     },
-    //     description: function (description) {
-    //         return typeof (description) !== "string" || !description
-    //     },
-    //     createdAt: function (createdAt) {
-    //         return typeof (createdAt) !== "object" && createdAt instanceof Date
-    //     },
-    //     author: function (author) {
-    //         return typeof (author) !== "string" || !author
-    //     },
-    //     photoLink: function (photoLink) {
-    //         return typeof (photoLink) !== "string" || !photoLink
-    //     },
-    //     hashTags: function (hashTags) {
-    //         if (typeof (hashTags) !== "object") {
-    //             return true;
-    //         }
-    //         else {
-    //             if (!isArrayValid(hashTags)) {
-    //                 console.log("объект невалиден");
-    //                 return true;
-    //             }
-    //             return false;
-    //         }
-    //
-    //     },
-    //     likes: function (likes) {
-    //         if (typeof (likes) !== "object") {
-    //             return true;
-    //         } else {
-    //             if (!isArrayValid(likes)) {
-    //                 console.log("объект невалиден");
-    //                 return true;
-    //             }
-    //             return false;
-    //         }
-    //     },
-    // };
-
+    let objectValidator = {
+        id: function (id) {
+            return typeof (id) === "string" && id
+        },
+        description: function (description) {
+            return typeof (description) === "string" && description
+        },
+        createdAt: function (createdAt) {
+            return typeof (createdAt) === "object" && createdAt instanceof Date
+        },
+        author: function (author) {
+            return typeof (author) === "string" && author
+        },
+        photoLink: function (photoLink) {
+            return typeof (photoLink) === "string" && photoLink
+        },
+        hashTags: function (hashTags) {
+            return typeof (hashTags) === "object" && isArrayValid(hashTags);
+        },
+        likes: function (likes) {
+            return typeof (likes) === "object" && isArrayValid(likes);
+        },
+    };
 
     function isArrayValid(array) {
         return array.every(function (item) {
@@ -463,6 +405,13 @@ let a = function () {
 
                     });
                     break;
+                case "author":
+                    phElement.textContent = data[key];
+                    if (data[key] === username) {
+                        let node = newNote.getElementById("button-for-mapping");
+                        node.setAttribute("class", "dropdown")
+                    }
+                    break;
                 default:
                     phElement.textContent = String(data[key]);
                     break;
@@ -505,8 +454,15 @@ let a = function () {
 
                         });
                         break;
+                    case "author":
+                        phElement.textContent = data[key];
+                        if (data[key] === username) {
+                            let node = newNote.getElementById("button-for-mapping");
+                            node.setAttribute("class", "dropdown")
+                        }
+                        break;
                     default:
-                        phElement.textContent = String(data[key]);
+                        phElement.textContent = data[key];
                         break;
                 }
             });
@@ -531,17 +487,21 @@ let a = function () {
                 let key = node.getAttribute('data-target');
                 if (data[key] !== undefined)
                     switch (key) {
-                        case "photoLink":
+                        case "photoLink" :
                             node.setAttribute("src", data[key]);
                             break;
-                        case "description":
-                            node.textContent = String(data[key]);
-                            break;
-                        case"hashTags":
-                            while (node.removeChild()) {
-                            }
-                            data[key].forEach((item) => {
 
+                        case "description" :
+                            node.textContent = data[key];
+                            break;
+
+                        case "hashTags":
+                            let tmp = node.getElementsByClassName("dropdown-item");
+                            let arr = Array.from(tmp);
+                            arr.forEach((item) => {
+                                node.removeChild(item);
+                            });
+                            data[key].forEach((item) => {
                                 let li = document.createElement('li');
                                 li.textContent = "#" + item;
                                 li.setAttribute("class", "dropdown-item");
@@ -557,8 +517,10 @@ let a = function () {
 })(window);
 
 function setUser() {
-    let node = document.getElementById("username");
-    node.textContent = username;
+    if (username != null) {
+        let node = document.getElementById("username");
+        node.textContent = username;
+    }
 }
 
 setUser();
@@ -569,7 +531,7 @@ addPhotoPost({
     id: '44',
     description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
     createdAt: new Date('2018-02-23T23:00:00'),
-    author: 'Иванов Максим',
+    author: 'Lukos',
     photoLink: 'gory_nebo_otrazhenie_trava_84468_1920x1080.jpg',
     hashTags: ['sport', 'weather', 'gold', 'olympicGold', 'hi', 'testTag'],
     likes: ['sam smith', 'maxim bykov', 'someone famous'],
@@ -578,4 +540,4 @@ addPhotoPost({
 
 removePhotoPost("2");
 
-editPhotoPost("44", {description: "djlfsldfjlkjsdfljklksdflkkjldsfkjl"});
+editPhotoPost("44", {description: "djlfsldfjlkjsdfljklksdflkkjldsfkjl", hashTags: ["skdjf", "second tag"]});

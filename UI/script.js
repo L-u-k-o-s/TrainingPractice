@@ -1,4 +1,4 @@
-var username = 'Lukos';
+const username = 'Lukos';
 let a = function () {
 
     let photoPosts = [
@@ -300,6 +300,12 @@ let a = function () {
             console.log("invalid photoPost");
             return false;
         }
+        if (photoPosts.some((item) => {
+                return item.id === photoPost.id;
+            })) {
+            console.log("invalid photoPost, same id");
+            return false;
+        }
         photoPosts.push(photoPost);
         console.log("successfully added");
         return true;
@@ -389,7 +395,7 @@ let a = function () {
         }).sort(function (firstPost, secondPost) {
             return secondPost.createdAt.getTime() - firstPost.createdAt.getTime()
         }).slice(skip, skip + top);
-    }//might better slice at first and then sort?
+    }
 
     function isHashTagsSuitable(tags, currentTags) {
         return tags.every(function (firstItem) {
@@ -414,7 +420,7 @@ let a = function () {
 (function (publicScope) {
     'use strict';
 
-    const template = document.getElementById('post-template1');
+    const template = document.getElementById('post-template');
     const container = document.getElementById('posts');
 
     function formatDate(date) {
@@ -427,7 +433,6 @@ let a = function () {
 
         return dd + '.' + mm + '.' + date.getFullYear();
     }
-
 
     function addItem(data) {
 
@@ -467,42 +472,89 @@ let a = function () {
         container.appendChild(newNote);
     }
 
-
-    publicScope.onAddItem = (data) => {
+    publicScope.addPhotoPostsFromArray = (data) => {
         data.forEach((item) => addItem(item));
     };
 
-    onAddItem(a.getPhotoPosts(0, 10));
-})(window);
+    publicScope.addPhotoPost = (data) => {
+        if (a.validatePhotoPost(data) && a.addPhotoPost(data)) {
+            let newNote = document.importNode(template.content, true);
 
-
-function removePhotoPost(id) {
-    const node = document.getElementById(id);
-    if (node.parentNode) {
-        node.parentNode.removeChild(node);
-    }
-    a.removePhotoPost(id);
-}
-
-function editPhotoPost(id, data) {
-    let node = document.getElementById(id);
-    let placeholders = node.querySelectorAll('[data-target]');
-    if (a.editPhotoPost(id, data)) {
-        [].forEach.call(placeholders, (node) => {
-            let key = node.getAttribute('data-target');
-            if (data[key] !== undefined)
+            let placeholders = newNote.querySelectorAll('[data-target]');
+            [].forEach.call(placeholders, (phElement) => {
+                let key = phElement.getAttribute('data-target');
                 switch (key) {
-                    case "photoLink":
-                        node.setAttribute("src", data[key]);
+                    case "createdAt":
+                        phElement.textContent = formatDate(data[key]);
                         break;
-                    case "description":
-                        node.textContent = String(data[key]);
+                    case "photoLink":
+                        phElement.setAttribute("src", data[key]);
+                        break;
+                    case"id":
+                        phElement.setAttribute("id", data[key]);
+                        break;
+                    case"likes":
+                        phElement.textContent = data[key].length + " persons likes this";
+                        break;
+                    case"hashTags":
+                        data[key].forEach((item) => {
+                            let li = document.createElement('li');
+                            li.textContent = "#" + item;
+                            li.setAttribute("class", "dropdown-item");
+                            phElement.appendChild(li);
+
+                        });
+                        break;
+                    default:
+                        phElement.textContent = String(data[key]);
                         break;
                 }
-        })
-    }
+            });
+            let firstLi = container.getElementsByClassName("content");
+            container.insertBefore(newNote, firstLi[0]);
+        }
+    };
 
-}
+    publicScope.removePhotoPost = (id) => {
+        const node = document.getElementById(id);
+        if (node.parentNode) {
+            node.parentNode.removeChild(node);
+        }
+        a.removePhotoPost(id);
+    };
+
+    publicScope.editPhotoPost = (id, data) => {
+        let node = document.getElementById(id);
+        let placeholders = node.querySelectorAll('[data-target]');
+        if (a.editPhotoPost(id, data)) {
+            [].forEach.call(placeholders, (node) => {
+                let key = node.getAttribute('data-target');
+                if (data[key] !== undefined)
+                    switch (key) {
+                        case "photoLink":
+                            node.setAttribute("src", data[key]);
+                            break;
+                        case "description":
+                            node.textContent = String(data[key]);
+                            break;
+                        case"hashTags":
+                            while (node.removeChild()) {
+                            }
+                            data[key].forEach((item) => {
+
+                                let li = document.createElement('li');
+                                li.textContent = "#" + item;
+                                li.setAttribute("class", "dropdown-item");
+                                node.appendChild(li);
+
+                            });
+                    }
+            })
+        }
+
+    };
+
+})(window);
 
 function setUser() {
     let node = document.getElementById("username");
@@ -511,21 +563,19 @@ function setUser() {
 
 setUser();
 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
+addPhotoPostsFromArray(a.getPhotoPosts(0, 10));
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
+addPhotoPost({
+    id: '44',
+    description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
+    createdAt: new Date('2018-02-23T23:00:00'),
+    author: 'Иванов Максим',
+    photoLink: 'gory_nebo_otrazhenie_trava_84468_1920x1080.jpg',
+    hashTags: ['sport', 'weather', 'gold', 'olympicGold', 'hi', 'testTag'],
+    likes: ['sam smith', 'maxim bykov', 'someone famous'],
 
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
+});
+
+removePhotoPost("2");
+
+editPhotoPost("44", {description: "djlfsldfjlkjsdfljklksdflkkjldsfkjl"});

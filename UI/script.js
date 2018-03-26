@@ -1,4 +1,8 @@
-const username = 'Lukos';
+let username = 'Lukos';
+let maxID = 20;
+
+let users = new Map();
+users.set("Lukos", 1);
 let a = function () {
 
     let photoPosts = [
@@ -54,7 +58,7 @@ let a = function () {
             createdAt: new Date('2018-02-23T23:00:00'),
             author: 'Иванов Иван',
             photoLink: 'park-priroda-osen-4.jpg',
-            hashTags: ['sport', 'weather', 'gold', 'olympicGold'],
+            hashTags: ['sport', 'weather', 'gold', 'olympicGold', 'my'],
             likes: ['sam smith', 'maxim bykov'],
 
         }, {
@@ -311,26 +315,28 @@ let a = function () {
         }
         return photoPosts.filter(function (item) {
             for (let key in filterConfig) {
-                switch (key) {
-                    case 'fromDate':
-                        if (filterConfig[key].getTime() > item.createdAt.getTime())
-                            return false;
-                        break;
-                    case 'toDate':
-                        if (filterConfig[key].getTime() < item.createdAt.getTime())
-                            return false;
-                        break;
-                    case 'hashTags':
-                        if (!isHashTagsSuitable(filterConfig[key], item[key]))
-                            return false;
-                        break;
+                if (filterConfig[key] !== null) {
+                    switch (key) {
+                        case 'fromDate':
+                            if (filterConfig[key].getTime() > item.createdAt.getTime())
+                                return false;
+                            break;
+                        case 'toDate':
+                            if (filterConfig[key].getTime() < item.createdAt.getTime())
+                                return false;
+                            break;
+                        case 'hashTags':
+                            if (!isHashTagsSuitable(filterConfig[key], item[key]))
+                                return false;
+                            break;
 
-                    case 'author':
-                        if (item[key] !== filterConfig[key])
-                            return false;
-                        break;
-                    default:
-                        break;
+                        case 'author':
+                            if (item[key] !== filterConfig[key])
+                                return false;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             return true;
@@ -395,12 +401,17 @@ let a = function () {
                     break;
                 case"likes":
                     phElement.textContent = data[key].length + " persons likes this";
+                    if (data[key].find((item) => {
+                            return username === item
+                        })) {
+                        phElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.innerHTML = "favorite";
+                    }
                     break;
                 case"hashTags":
                     data[key].forEach((item) => {
                         let li = document.createElement('li');
                         li.textContent = "#" + item;
-                        li.setAttribute("class", "dropdown-item");
+                        li.setAttribute("class", "dropdown-item text-color-white");
                         phElement.appendChild(li);
 
                     });
@@ -449,7 +460,7 @@ let a = function () {
                         data[key].forEach((item) => {
                             let li = document.createElement('li');
                             li.textContent = "#" + item;
-                            li.setAttribute("class", "dropdown-item");
+                            li.setAttribute("class", "dropdown-item text-color-white");
                             phElement.appendChild(li);
 
                         });
@@ -468,7 +479,9 @@ let a = function () {
             });
             let firstLi = container.getElementsByClassName("content");
             container.insertBefore(newNote, firstLi[0]);
+            return true;
         }
+        return false;
     };
 
     publicScope.removePhotoPost = (id) => {
@@ -504,7 +517,7 @@ let a = function () {
                             data[key].forEach((item) => {
                                 let li = document.createElement('li');
                                 li.textContent = "#" + item;
-                                li.setAttribute("class", "dropdown-item");
+                                li.setAttribute("class", "dropdown-item text-color-white");
                                 node.appendChild(li);
 
                             });
@@ -516,11 +529,231 @@ let a = function () {
 
 })(window);
 
-function setUser() {
+function removePhotoPostOnClick(that) {
+    let id = that.parentElement.parentElement.parentElement.parentElement
+        .parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
+    removePhotoPost(id);
+}
+
+function like(that) {
     if (username != null) {
-        let node = document.getElementById("username");
+        let contentFooter = that.parentElement.parentElement.parentElement;
+        let id = contentFooter.parentElement.parentElement.getAttribute("id");
+        if (that.innerHTML === "favorite_border") {
+            that.innerHTML = "favorite";
+            a.getPhotoPost(id).likes.push(username);
+            contentFooter.children[1].firstElementChild.innerHTML = a.getPhotoPost(id).likes.length + " persons likes this";
+        }
+        else {
+            that.innerHTML = "favorite_border";
+            a.getPhotoPost(id).likes.pop(username);
+            contentFooter.children[1].firstElementChild.innerHTML = a.getPhotoPost(id).likes.length + " persons likes this";
+        }
+
+    }
+}
+
+function setUser() {
+    let node = document.getElementById("username");
+    if (username != null) {
         node.textContent = username;
     }
+    else {
+        node.textContent = "";
+    }
+}
+
+function loadMore() {
+    let skip = document.getElementsByClassName("content").length;
+    if (tempObj === undefined) {
+        addPhotoPostsFromArray(a.getPhotoPosts(skip, 10))
+    }
+    else {
+        addPhotoPostsFromArray(a.getPhotoPosts(skip, 10, tempObj))
+    }
+}
+
+let tempObj;
+
+function hideAllPosts() {
+    let arr = document.getElementsByClassName("content");
+    for (let i = arr.length - 1; i >= 0; i--) {
+        const node = document.getElementById(arr[i].getAttribute("id"));
+        if (node.parentNode) {
+            node.parentNode.removeChild(node);
+        }
+        // [].forEach.call(arr, (phElement) =>
+        // })
+    }
+}
+
+function filterPhotos(that) {
+    let fromDate = null;
+    let toDate = null;
+    let author = null;
+    let hashTags = null;
+    if (that.parentElement.firstElementChild.firstElementChild.value) {
+        fromDate = new Date(that.parentElement.firstElementChild.firstElementChild.value);
+    }
+
+    if (that.parentElement.children[1].firstElementChild.value) {
+        toDate = new Date(that.parentElement.children[1].firstElementChild.value);
+    }
+
+    if (that.parentElement.children[2].firstElementChild.value) {
+        author = that.parentElement.children[2].firstElementChild.value;
+    }
+
+    if (that.parentElement.children[3].firstElementChild.value) {
+        hashTags = that.parentElement.children[3].firstElementChild.value.split(' ');
+    }
+    let obj = {fromDate, toDate, hashTags, author};
+    // if (tempObj === obj&& tempObj) {
+    //     let skip = document.getElementsByClassName("content").length;
+    //     addPhotoPostsFromArray(a.getPhotoPosts(skip, 10, obj));
+    // } else {
+    if (tempObj !== undefined || JSON.stringify(obj) !== JSON.stringify(tempObj)) {
+        hideAllPosts();
+        addPhotoPostsFromArray(a.getPhotoPosts(0, 10, obj));
+    }
+    //}
+    tempObj = obj;
+}
+
+function showMainPage() {
+    document.getElementById("mainPage").setAttribute("class", "visible");
+    document.getElementById("loginPage").setAttribute("class", "invisible");
+    document.getElementById("errorPage").setAttribute("class", "invisible");
+    document.getElementById("addPage").setAttribute("class", "invisible");
+    document.getElementById("editPage").setAttribute("class", "invisible");
+
+}
+
+function showLoginPage() {
+    document.getElementById("mainPage").setAttribute("class", "invisible");
+    document.getElementById("loginPage").setAttribute("class", "column-flex-box visible");
+    document.getElementById("errorPage").setAttribute("class", "invisible");
+    document.getElementById("addPage").setAttribute("class", "invisible");
+    document.getElementById("editPage").setAttribute("class", "invisible");
+
+}
+
+function showErrorPage() {
+    document.getElementById("mainPage").setAttribute("class", "invisible");
+    document.getElementById("loginPage").setAttribute("class", "invisible");
+    document.getElementById("errorPage").setAttribute("class", "column-flex-box visible");
+    document.getElementById("addPage").setAttribute("class", "invisible");
+    document.getElementById("editPage").setAttribute("class", "invisible");
+
+}
+
+function showAddPage() {
+    if (username !== null) {
+        document.getElementById("mainPage").setAttribute("class", "invisible");
+        document.getElementById("loginPage").setAttribute("class", "invisible");
+        document.getElementById("errorPage").setAttribute("class", "invisible");
+        document.getElementById("addPage").setAttribute("class", "column-flex-box visible");
+        document.getElementById("editPage").setAttribute("class", "invisible");
+    } else {
+        alert("Please Log In at first");
+    }
+
+}
+
+function showEditPage(that) {
+    document.getElementById("mainPage").setAttribute("class", "invisible");
+    document.getElementById("loginPage").setAttribute("class", "invisible");
+    document.getElementById("errorPage").setAttribute("class", "invisible");
+    document.getElementById("addPage").setAttribute("class", "invisible");
+    document.getElementById("editPage").setAttribute("class", "column-flex-box visible");
+
+    let id = that.parentElement.parentElement.parentElement.parentElement
+        .parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute("id").toString();
+    document.getElementById("idHolder").innerText = id;
+    document.getElementById("editPostDescription").value = a.getPhotoPost(id).description;// document.getElementById(id).children[2].children[1].firstElementChild.value;
+    document.getElementById("editPostTags").value = a.getPhotoPost(id).hashTags.toString();// document.getElementById(id).children[2].children[0].firstElementChild.value;
+}
+
+function getPost(that) {
+    let photoLink = document.getElementById("newPostImagePath").value;
+    document.getElementById("newPostImagePath").value = "";
+    let description = document.getElementById("newPostDescription").value;
+    document.getElementById("newPostDescription").value = "";
+    let hashTags = document.getElementById("newPostTags").value.split(/[, ]+/);
+    document.getElementById("newPostTags").value = "";
+
+    let author = username;
+    let id = (maxID + 1).toString();
+    maxID++;
+
+    let obj = {
+        createdAt: new Date(),
+        likes: [],
+        hashTags,
+        description,
+        photoLink,
+        author,
+        id
+    }
+
+    if (addPhotoPost(obj)) {
+        showMainPage();
+    } else {
+        showErrorPage();
+    }
+
+
+}
+
+function editPost(that) {
+
+    let description = document.getElementById("editPostDescription").value;
+    let hashTags = document.getElementById("editPostTags").value.split(/[, ]+/);
+    let id = document.getElementById("idHolder").innerText;
+
+    let obj = {description, hashTags};
+
+    editPhotoPost(id, obj);
+    showMainPage();
+}
+
+function logIn() {
+    let user = document.getElementById("login").value;
+    let password = document.getElementById("password").value;
+    if (users.has(user) && users.get(user) === password) {
+        username = user;
+    } else {
+        username = null;
+    }
+    setUser();
+    hideAllPosts();
+    addPhotoPostsFromArray(a.getPhotoPosts(0, 10));
+
+}
+
+function regAndLogIn() {
+    let user = document.getElementById("login").value;
+    let password = document.getElementById("password").value;
+    if (!users.has(user) && user !== "" && password !== "") {
+        users.set(user, password);
+        username = user;
+        setUser();
+        hideAllPosts();
+        addPhotoPostsFromArray(a.getPhotoPosts(0, 10));
+
+    } else {
+        showErrorPage();
+    }
+
+}
+
+function logOut() {
+    username = null;
+    setUser();
+    hideAllPosts();
+    addPhotoPostsFromArray(a.getPhotoPosts(0, 10));
+
+    showMainPage();
 }
 
 setUser();
@@ -530,7 +763,7 @@ addPhotoPostsFromArray(a.getPhotoPosts(0, 10));
 addPhotoPost({
     id: '44',
     description: 'Женская сборная Беларуси выиграла эстафету в рамках соревнований по биатлону на Олимпийских играх в Пхёнчхане!!!',
-    createdAt: new Date('2018-02-23T23:00:00'),
+    createdAt: new Date(),
     author: 'Lukos',
     photoLink: 'gory_nebo_otrazhenie_trava_84468_1920x1080.jpg',
     hashTags: ['sport', 'weather', 'gold', 'olympicGold', 'hi', 'testTag'],

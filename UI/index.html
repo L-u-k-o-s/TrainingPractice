@@ -8,143 +8,235 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Copse" rel="stylesheet">
     <title>Document</title>
+
 </head>
 <body>
 <header>
-
-    <div class="dropdown">
-
-        <button class="header-button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-            <img src="ic_person_white_48px.svg">
-            <p class="username" id="username"></p>
-
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Log In/Log Out</button>
-            <button class="dropdown-item" type="button">Add Photo</button>
-        </div>
-
-    </div>
-
     <div class=" headerText ">
-        <span class="copseFont ">PHOTO<span class="permanentMarkerFont">HUB</span></span>
+        <div class=" menu ">
+            <ul class="clearfix">
+                <li>
+                    <button class="header-button" type="button" id="dropdownMenu2"  data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        <i class="material-icons person-more">person</i>
+                        <p class="username" id="username"></p>
+                    </button>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="showLoginPage()">Log In/Out Page</a></li>
+                        <li><a href="#" onclick="showAddPage()">Add Photo</a></li>
+                    </ul>
+
+                    <!--<div class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+                    <!--<button class="dropdown-item" type="button">Log In/Log Out</button>-->
+                    <!--<button class="dropdown-item" type="button">Add Photo</button>-->
+                    <!--</div>-->
+                </li>
+            </ul>
+        </div>
+        <span class="copseFont " onclick="showMainPage()">PHOTO<span class="permanentMarkerFont">HUB</span></span>
     </div>
 
 </header>
 
 <main>
-    <div class="filter">
+
+    <div class="visible" id="mainPage">
+
+        <div class="filter">
+            <form>
+                <div class="form-row">
+                    <div class="col-2">
+                        <input type="text" class="form-control" placeholder="From: 12.03.1998">
+                    </div>
+                    <div class="col-2">
+                        <input type="text" class="form-control" placeholder="To: 26.02.2018">
+                    </div>
+                    <div class="col-3 sticky-position">
+                        <input type="text" name="users" class="form-control" placeholder="Names: Lukos " list="users">
+                        <datalist class="sticky-position" id="users">
+                            <option value="Lukos">
+                            <option value="DezEnd">
+                            <option value="Иванов Иван">
+                            <option value="Иванов Максим">
+                            <option value="Быков Максим">
+                        </datalist>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Tags: #nature">
+                    </div>
+                    <button type="button" onclick="filterPhotos(this)">Submit</button>
+                </div>
+            </form>
+
+        </div>
+
+        <ul class="posts " id="posts">
+
+            <template id="post-template">
+                <li class="content" id="" data-target="id">
+                    <div class="content-header">
+                        <div class="content-header-username"><span class="span-options"
+                                                                   data-target="author">Nickname</span>
+                        </div>
+                        <div class="content-header-data-of-publication">
+                            <span class="span-options"
+                                  data-target="createdAt">Date</span>
+                        </div>
+                        <div class="content-header-menu ">
+                            <div class="dropdown hidden-element" id="button-for-mapping">
+
+
+                                <div class="menu more">
+                                    <ul class="clearfix">
+                                        <li>
+                                            <button class="more" type="button" id="dropdownMenuButton100"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons more">more_vert</i>
+                                            </button>
+                                            <ul class="sub-menu">
+                                                <li><a href="#" onclick="showEditPage(this)">Edit</a></li>
+                                                <li><a href="#" onclick="removePhotoPostOnClick(this)">Delete</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-main">
+                        <div class="content-main-img-wrapper">
+                            <img src="gory_nebo_otrazhenie_trava_84468_1920x1080.jpg" class="content-main-img"
+                                 data-target="photoLink" alt="Картинка не найдена">
+                        </div>
+                    </div>
+                    <div class="content-footer">
+                        <div class="content-footer-status">
+                            <div class="likes-block">
+                                <button class="more " onclick="like(this.firstElementChild)">
+                                    <i class="material-icons more">favorite_border</i>
+                                </button>
+                            </div>
+                            <div class="empty-block">
+                                <div class="likes" data-target="likes">0</div>
+                            </div>
+                            <div class="hash-tags-block">
+
+
+                                <div class="menu dropright more">
+                                    <ul class="clearfix">
+                                        <li>
+                                        <span href="#">
+                                            <button type="button" class="more" data-toggle="dropdown">
+                                    <i class="material-icons more">apps</i></button></span>
+                                            <ul class="sub-menu" data-target="hashTags">
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="content-footer-description"><p class="description" data-target="description">Some
+                            description will be here...</p>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+        <div class="load-more-button">
+            <button onclick="loadMore()">load more</button>
+        </div>
+    </div>
+    <div class="column-flex-box invisible" id="loginPage">
         <form>
-            <div class="form-row">
-                <div class="col-2">
-                    <input type="text" class="form-control" placeholder="From: 12.03.1998">
-                </div>
-                <div class="col-2">
-                    <input type="text" class="form-control" placeholder="To: 26.02.2018">
-                </div>
-                <div class="col-3 sticky-position">
-                    <input type="text" name="users" class="form-control" placeholder="Names: Lukos " list="users">
-                    <datalist class="sticky-position" id="users">
-                        <option value="Lukos">
-                        <option value="DezEnd">
-                        <option value="Иванов Иван">
-                        <option value="Иванов Максим">
-                        <option value="Быков Максим">
-                    </datalist>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Tags: #nature">
-                </div>
-                <button>Submit</button>
+
+            <div class="containerr">
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname1" id="login" required>
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw1" id="password" required>
+
+                <button class="buttonb" type="reset" onclick="logIn()">Log in</button>
+                <button class="buttonb" type="reset" onclick="regAndLogIn()">Registration and Log in</button>
+
+                <button class="buttonb" style="background: red; margin-top: 70px" type="reset" onclick="logOut()"> Log Out</button>
+
+            </div>
+
+
+            <div class="container" style="background-color:#f1f1f1">
             </div>
         </form>
-
     </div>
-
-    <ul class="posts" id="posts">
-
-        <template id="post-template">
-            <li class="content" id="" data-target="id">
-                <div class="content-header">
-                    <div class="content-header-username"><span class="span-options" data-target="author">Nickname</span>
-                    </div>
-                    <div class="content-header-data-of-publication"><span class="span-options" data-target="createdAt">Date</span>
-                    </div>
-                    <div class="content-header-menu ">
-                        <div class="dropdown hidden-element" id="button-for-mapping">
-                            <button class="more" type="button" id="dropdownMenuButton100"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons more">more_vert</i>
-                            </button>
-                            <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Delete</a>
-                                <a class="dropdown-item" href="#">Info</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-main">
-                    <div class="content-main-img-wrapper">
-                        <img src="gory_nebo_otrazhenie_trava_84468_1920x1080.jpg" class="content-main-img"
-                             data-target="photoLink" alt="Картинка не найдена">
-                    </div>
-                </div>
-                <div class="content-footer">
-                    <div class="content-footer-status">
-                        <div class="likes-block">
-                            <button class="more ">
-                                <i class="material-icons more">favorite_border</i>
-                            </button>
-                        </div>
-                        <div class="empty-block">
-                            <div class="likes" data-target="likes">0</div>
-                        </div>
-                        <div class="hash-tags-block">
-                            <div class="dropright">
-                                <button type="button" class="more" data-toggle="dropdown">
-                                    <i class="material-icons more">apps</i></button>
-                                <ul class="dropdown-menu" data-target="hashTags">
-                                    <!--<li class="dropdown-item" href="#">#Nature</li>-->
-                                    <!--<li class="dropdown-item" href="#">#Water</li>-->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-footer-description"><p class="description" data-target="description">Some
-                        description will be here...</p>
-                    </div>
-                </div>
-            </li>
-        </template>
-    </ul>
-    <div>
-        <button style="margin: 15px;">load more</button>
+    <div class="column-flex-box invisible" id="errorPage">
+        <p class="error-text">Something went<br> wrong:(</p>
     </div>
+    <div class="column-flex-box invisible" id="addPage">
+        <form>
 
+
+            <div class="containerr">
+                <label><b>Image</b></label>
+                <br>
+                <!--<input type="file" placeholder="Url or Path" name="uname" id="newPostImagePath" required>-->
+                <input type="text" placeholder="Url or Path" name="uname2" id="newPostImagePath" required>
+                <br>
+                <label><b>Description</b></label>
+                <input type="text" placeholder="Enter Description" name="psw2" id="newPostDescription" required>
+
+                <label><b>Tags</b></label>
+                <input type="text" placeholder="Enter Tags" name="psw3" id="newPostTags" required>
+
+
+                <button class="buttonb" type="button" onclick="getPost(this)">Add Photo</button>
+
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+            </div>
+        </form>
+    </div>
+    <div class="column-flex-box invisible" id="editPage">
+        <div  >Post id: <span id="idHolder">3</span></div>
+        <form>
+            <div class="containerr">
+
+                <br>
+                <label><b>Description</b></label>
+                <input type="text" placeholder="Enter Description" name="psw4" id="editPostDescription" required>
+
+                <label><b>Tags</b></label>
+                <input type="text" placeholder="Enter Tags" name="psw5" id="editPostTags" required>
+
+
+                <button class="buttonb" type="button" onclick="editPost(this)">Edit Photo</button>
+
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+            </div>
+        </form>
+    </div>
     <footer>
-        <p>Maxim Bykov 2 course 7 group</p>
-        <p>PhotoHub</p>
-        <p>maxim12098@gmail.com</p>
-        <p>2018</p>
+        <p class="white-text">Maxim Bykov 2 course 7 group</p>
+        <p class="white-text">PhotoHub</p>
+        <p class="white-text">maxim12098@gmail.com</p>
+        <p class="white-text">2018</p>
     </footer>
 </main>
-<script src="script.js"></script>
+<script src="script.js" ></script>
+
 </body>
+
 </html>
